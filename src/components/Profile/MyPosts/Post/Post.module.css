@@ -38,7 +38,15 @@
     min-width: 30px;
     height: 30px;
     border-radius: 2px;
-    background: cadetblue url('https://e7.pngegg.com/pngimages/275/802/png-clipart-black-heart-illustration-heart-computer-icons-heart-shaped-silhouette-love-heart.png') no-repeat center / 15px;
+    background: cadetblue;
     border: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+}
+
+.item__like button svg {
+    width: 100%;
 }

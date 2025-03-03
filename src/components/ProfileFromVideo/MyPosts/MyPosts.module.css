@@ -14,7 +14,15 @@
     min-width: 40px;
     height: 40px;
     border-radius: 2px;
-    background: cadetblue url('/src/assets/img/send_icon.svg') no-repeat center/20px;
+    background: cadetblue;
     border: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.field_wrap button svg {
+    width: 100%;
 }
