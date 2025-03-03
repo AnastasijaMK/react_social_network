@@ -1,5 +1,6 @@
 import {profileAPI, usersAPI} from "../api/api";
 import {setFetchingStatusAC, setTotalUsersCountAC, setUsersAC} from "./users-reducer";
+import {setAuthUserAvatarAC} from "./auth-reducer";
 
 const ADD_POST = '/profile/ADD-POST';
 const SET_PROFILE_INFO = '/profile/SET_PROFILE_INFO';
@@ -130,7 +131,8 @@ export const savePhotoThunkCreator = (photo) => {
     return async (dispatch) => {
         const response = await profileAPI.savePhoto(photo);
         if(response.resultCode === 0) {
-            dispatch(setProfilePhotoAC(response.photos.large));
+            dispatch(setProfilePhotoAC(response.data.photos));
+            dispatch(setAuthUserAvatarAC(response.data.photos.large));
         }
     }
 }
