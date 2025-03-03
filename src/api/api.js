@@ -52,6 +52,20 @@ export const profileAPI = {
             body: JSON.stringify({status: newStatus})
         })
             .then(response=>response.json())
+    },
+    savePhoto(photo) {
+        const formData = new FormData();
+        formData.append('image', photo);
+
+        return fetch(`${baseURL}profile/photo`, {
+            method: 'PUT',
+            headers: {
+                'API-KEY' : '6ecb6a05-6db0-4eb7-8512-1150f3ad73dd'
+            },
+            credentials: "include",
+            body: formData
+        })
+            .then(response=>response.json())
     }
 };
 

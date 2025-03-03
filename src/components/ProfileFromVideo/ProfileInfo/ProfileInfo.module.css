@@ -12,12 +12,32 @@
     border-radius: 50%;
     overflow: hidden;
     display: flex;
+    position: relative;
 }
 
 .user__icon img {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
+}
+
+.user__button {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    background: rgba(255, 255, 255, 0.6);
+    color: cadetblue;
+    transition: opacity 0.3s ease-out;
+}
+
+.user__icon:hover .user__button {
+    opacity: 1;
 }
 
 .user__info {
@@ -70,4 +90,16 @@
     background: cadetblue url('/src/assets/img/send_icon.svg') no-repeat center/20px;
     border: 0;
     cursor: pointer;
+}
+
+.banner {
+    height: 300px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.banner img {
+    max-width: 100%;
+    object-fit: cover;
 }

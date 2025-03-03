@@ -2,7 +2,6 @@ import React from "react";
 
 import classes from "./Profile.module.css";
 
-import Banner from "../Banner/Banner";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Loader from "../common/Loader/Loader";
@@ -14,10 +13,11 @@ const ProfileInContainer = (props)=>{
             {props.profileIsFetching ?
                 <Loader parent='profile_loading'/> :
                 <>
-                    <Banner/>
-                    <ProfileInfo profile={props.profile}
+                    <ProfileInfo myProfile={props.authorizedUserId}
+                                 profile={props.profile}
                                  status={props.status}
-                                 updateProfileStatus={props.updateProfileStatusThunk}/>
+                                 updateProfileStatus={props.updateProfileStatusThunk}
+                                 savePhoto={props.savePhotoThunk}/>
                     {/*<MyPosts />*/}
                     <MyPostsContainer/>
                 </>

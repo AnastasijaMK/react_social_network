@@ -5,6 +5,7 @@ const ADD_POST = '/profile/ADD-POST';
 const SET_PROFILE_INFO = '/profile/SET_PROFILE_INFO';
 const SET_PROFILE_FETCHING_STATUS = '/profile/SET_PROFILE_FETCHING_STATUS';
 const SET_PROFILE_STATUS = '/profile/SET_PROFILE_STATUS';
+const SET_PROFILE_PHOTO = '/profile/SET_PROFILE_PHOTO';
 
 const myProfile = {
     fullName: 'AnastasiaMK',
@@ -54,6 +55,11 @@ const profileReducer = (state = initialState, action)=>{
                 ...state,
                 status: action.status
             }
+        case SET_PROFILE_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
         default:
             return state;
     }
@@ -87,6 +93,14 @@ export const setProfileFetchingStatusAC = (fetchingStatus) =>{
     }
 }
 
+export const setProfilePhotoAC = (photos) =>{
+    return {
+        type: SET_PROFILE_PHOTO,
+        photos
+    }
+};
+
+
 // Thunk -->
 export const getProfileDataThunkCreator = (profileId) => {
     return async (dispatch) => {
@@ -108,6 +122,15 @@ export const updateProfileStatusThunkCreator = (status) => {
         const response = await profileAPI.updateStatus(status);
         if(response.resultCode === 0) {
             dispatch(setProfileStatusAC(status));
+        }
+    }
+}
+
+export const savePhotoThunkCreator = (photo) => {
+    return async (dispatch) => {
+        const response = await profileAPI.savePhoto(photo);
+        if(response.resultCode === 0) {
+            dispatch(setProfilePhotoAC(response.photos.large));
         }
     }
 }
