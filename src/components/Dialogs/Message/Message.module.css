@@ -1,0 +1,47 @@
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.message:last-child {
+    margin-bottom: 0;
+}
+
+.message_current {
+    justify-content: flex-end;
+}
+
+.message__user {
+    width: 30px;
+    min-width: 30px;
+}
+
+.message__img {
+    width: 100%;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 2px;
+}
+
+.message__img img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+.message__name {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.message__content {
+    background-color: bisque;
+    border-radius: 5px;
+    padding: 10px;
+    width: fit-content;
+}

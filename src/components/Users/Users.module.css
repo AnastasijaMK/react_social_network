@@ -1,0 +1,26 @@
+.users_head {
+    padding: 10px 0 0;
+}
+
+.users_head h1 {
+    margin: 0 0 40px 0;
+}
+
+.user_wrap {
+    position: relative;
+}
+
+.users_list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: opacity 0.3s ease-out;
+}
+
+.users_list:empty {
+    min-height: 550px;
+}
+
+.users_list--loading {
+    opacity: 0;
+}

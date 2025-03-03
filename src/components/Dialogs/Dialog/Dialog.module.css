@@ -1,0 +1,39 @@
+.dialogs__item {
+    cursor: pointer;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.dialogs__item:last-child {
+    border-bottom: 0;
+}
+
+.dialogs__link {
+    padding: 7px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.dialogs__link_active {
+    background-color: cadetblue;
+    font-weight: bold;
+    color: #fff;
+}
+
+.dialogs__img {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+}
+
+.dialogs__img img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}

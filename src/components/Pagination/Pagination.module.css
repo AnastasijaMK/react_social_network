@@ -1,0 +1,41 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.pagination__item {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 2px;
+    border: 1px solid cadetblue;
+    cursor: pointer;
+}
+
+.pagination__item--active {
+    background: cadetblue;
+    color: #fff;
+}
+
+.pagination__arrow {
+    background: transparent;
+}
+
+.pagination__arrow:disabled {
+    cursor: auto;
+    opacity: 0.5;
+}
+
+.pagination__arrow--prev {
+    transform: rotate(-180deg);
+}
+
+.pagination__arrow img {
+    width: 15px;
+}

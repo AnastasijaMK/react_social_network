@@ -1,0 +1,11 @@
+import classes from './Banner.module.css';
+
+const Banner = ()=>{
+  return(
+      <div className={classes.banner}>
+          <img src="https://yandex-images.clstorage.net/5nFH4F113/765da0PBAr/qLLvzCHlA0c1qA8itqd5-RKyxsMUMayQO_guczBJ44RULBKXH5z4CTyWpPDy8yOR5Mq-ch-h0btF2nVv6D4KeOrrr55nu0RHMLxEKPq9dekH_tuAAXO1lDyhInQJIZf9IBdp_DO_0CZxxf3xp7xs26mk2Gdv1f-2HbYPeuheeiO9hc7qA_RIYBSLRhW-qF73D_na3wNQlcQk8nw1EgmZ0xM-d_8fit0wRcb09ISeINGQgt0CY__hkzGGC0XBUlA-srfL3SbsaEY4ukg6krpe1Qvo2_45dLznKPZ0EiUokMk6IGnINpDLK07C5OCulRvDhqnoMkD547wumCxj519wDZOh6N0L1WJFBI9KEIWrS90O0uPiL3ev6zfGeCg1H5zGAy9n7xGf9CZN6tzsq5Aw-IyrwyJdwuWhHJoQdPN3aAaTmsr1HOF1XCG4aB6tpVz5I8_O4BFwkeQh31coHRuF-hEDZN41qMEpefzG85KAFNC6rdIyccvcmQ6SN3fqYF0IjobT5ivXf346vEMsopB60w7p_eMGU47sJe1lKScNocgmLlD6OajKGmzV8NawnST5tKjUI1ze87YVpCJo5XpnP7i37_US2VhhML5tFZ-jWP8g5PvRMH2pySTmcAsXK5PbKgtt9j-o9xBY7sXUs4wK_Iu69SBx_s6iOIQCcexZSDCwodbqOuxCeCSrdSK7n07vAdfLwA5ro_w-63cwJT2DziUFf90MrvMAWubyzaiSGtqWjdcfYPLNkSavDlLSfG4Lu4Ho_QHSTG0TtGU0ortKzj7f-sEwWpHsJ-VEJDISrsYDL27LKa_2EFzt-MWqpQTImJLRL0PR_ZQwlhFiyUN9O4iYyNgW10tnHIJpGoSMWs8ey9LnLUStwR_LVD01E7DwLRhM6g-a_Q56y9v7mKYR7pCR6Spkx_-aNpYyVOBbcCuOifLKNfVcXyeIVgyOgmTaOfr4yQJJl94Ay0QQDy0" alt=""/>
+      </div>
+  )
+};
+
+export default Banner;
