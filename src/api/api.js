@@ -3,6 +3,7 @@ const baseURL = 'https://social-network.samuraijs.com/api/1.0/';
 export const usersAPI = {
     getUsers (currentPage = 1, pageSize = 5) {
         return fetch(`${baseURL}users?page=${currentPage}&count=${pageSize}`, {
+            headers: {'API-KEY' : '6ecb6a05-6db0-4eb7-8512-1150f3ad73dd'},
             credentials: "include"
         }).then(response => response.json())
     }
@@ -27,11 +28,17 @@ export const followAPI = {
 
 export const profileAPI = {
     getProfileInfo(profileID) {
-        return fetch(`${baseURL}profile/${profileID}`)
+        return fetch(`${baseURL}profile/${profileID}`, {
+            headers: {'API-KEY' : '6ecb6a05-6db0-4eb7-8512-1150f3ad73dd'},
+            credentials: "include"
+        })
             .then(response=>response.json())
     },
     getStatus(profileID) {
-        return fetch(`${baseURL}profile/status/${profileID}`)
+        return fetch(`${baseURL}profile/status/${profileID}`, {
+            headers: {'API-KEY' : '6ecb6a05-6db0-4eb7-8512-1150f3ad73dd'},
+            credentials: "include"
+        })
             .then(response=>response.json())
     },
     updateStatus(newStatus) {

@@ -35,34 +35,10 @@ const Navbar = ()=> {
                 </li>
                 <li className={classes.item}>
                     <NavLink
-                        to="/news"
-                        className={({isActive})=>(isActive ? classes.activeLink : '')}
-                    >
-                        News
-                    </NavLink>
-                </li>
-                <li className={classes.item}>
-                    <NavLink
-                        to="/music"
-                        className={({isActive})=>(isActive ? classes.activeLink : '')}
-                    >
-                        Music
-                    </NavLink>
-                </li>
-                <li className={classes.item}>
-                    <NavLink
                         to="/users"
                         className={({isActive})=>(isActive ? classes.activeLink : '')}
                     >
                         Users
-                    </NavLink>
-                </li>
-                <li className={classes.item}>
-                    <NavLink
-                        to="/settings"
-                        className={({isActive})=>(isActive ? classes.activeLink : '')}
-                    >
-                        Settings
                     </NavLink>
                 </li>
             </ul>
