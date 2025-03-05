@@ -6,7 +6,7 @@ import ProfileInContainer from "./ProfileInContainer";
 import {
     setProfileFetchingStatusAC,
     setProfileInfoAC,
-    getProfileDataThunkCreator, setProfileStatusAC, updateProfileStatusThunkCreator, getProfileStatusThunkCreator, savePhotoThunkCreator
+    getProfileDataThunkCreator, setProfileStatusAC, updateProfileStatusThunkCreator, getProfileStatusThunkCreator, savePhotoThunkCreator, saveProfileThunkCreator
 } from "../../redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -52,7 +52,8 @@ const mapStateToProps = (state) => {
         myProfile: state.profilePage.myProfile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        profileEditMode: state.profilePage.profileEditMode
     }
 };
 
@@ -78,6 +79,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         savePhotoThunk: (photo) => {
             dispatch(savePhotoThunkCreator(photo));
+        },
+        saveProfileThunk: (profile) => {
+            dispatch(saveProfileThunkCreator(profile));
         }
     }
 }

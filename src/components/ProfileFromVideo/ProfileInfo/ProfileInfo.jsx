@@ -4,8 +4,14 @@ import ProfileStatus from "./ProfileStatus";
 import userPhoto from "../../../assets/img/channels4_profile.jpg";
 import userBanner from "../../../assets/img/banner.jpg";
 import {useRef} from "react";
+import ProfileData from "./ProfileData/ProfileData";
+import ProfileDataInEditModeRedux from "./ProfileData/ProfileDataInEditMode";
+import {setProfileEditModeAC} from "../../../redux/profile-reducer";
+import {useDispatch} from "react-redux";
 
 const ProfileInfo = (props)=>{
+    const dispatch = useDispatch();
+
     const fileInputRef = useRef(null);
 
     if(!props.profile) {
@@ -18,10 +24,19 @@ const ProfileInfo = (props)=>{
         }
     };
 
-    const updateUserIcon = (e)=>{
+    const updateUserPhoto = (e)=>{
         if(e.target.files.length) {
             props.savePhoto(e.target.files[0]);
         }
+    };
+
+    const enableEditMode = () =>{
+        dispatch(setProfileEditModeAC(true));
+    };
+
+    // Функция для обработки отправки формы
+    const onSubmit = (formData) => {
+        props.saveProfile(formData);
     };
 
   return(
@@ -41,7 +56,7 @@ const ProfileInfo = (props)=>{
                               id="file-upload"
                               ref={fileInputRef}
                               style={{ display: "none" }}
-                              onChange={updateUserIcon}
+                              onChange={updateUserPhoto}
                           />
                           <button className={classes.user__button} onClick={handleButtonClick}>
                               Выбрать фото
@@ -49,10 +64,19 @@ const ProfileInfo = (props)=>{
                       </>)
                   }
               </div>
+
               <div className={classes.user__info}>
-                  <p className={classes.user__name}>{props.profile.fullName}</p>
-                  <p>Date of Birth: 2 January</p>
-                  <p>Location: Moscow</p>
+                  {
+                      props.profileEditMode ?
+                          <ProfileDataInEditModeRedux initialValues={props.profile}
+                                                      profile={props.profile}
+                                                      onSubmit={onSubmit}/>
+                          :
+                          <ProfileData profile={props.profile}
+                                       myProfile={props.myProfile}
+                                       enableEditMode={enableEditMode}/>
+                  }
+
                   <ProfileStatus status={props.status} updateStatus={props.updateProfileStatus}/>
               </div>
           </div>

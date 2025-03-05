@@ -103,3 +103,16 @@
     max-width: 100%;
     object-fit: cover;
 }
+
+.user__contacts {
+    margin: 20px 0;
+}
+
+.user__edit_button {
+    border-radius: 2px;
+    background: cadetblue;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    padding: 5px 15px;
+}

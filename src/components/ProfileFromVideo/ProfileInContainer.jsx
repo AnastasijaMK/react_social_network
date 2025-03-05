@@ -17,7 +17,9 @@ const ProfileInContainer = (props)=>{
                                  profile={props.profile}
                                  status={props.status}
                                  updateProfileStatus={props.updateProfileStatusThunk}
-                                 savePhoto={props.savePhotoThunk}/>
+                                 savePhoto={props.savePhotoThunk}
+                                 saveProfile={props.saveProfileThunk}
+                                 profileEditMode={props.profileEditMode}/>
                     {/*<MyPosts />*/}
                     <MyPostsContainer/>
                 </>

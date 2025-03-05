@@ -1,0 +1,29 @@
+.form__row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.form__row b {
+    min-width: 160px;
+    flex-shrink: 0;
+}
+
+.user__contacts {
+    margin: 20px 0;
+}
+
+.user__edit_button {
+    border-radius: 2px;
+    background: cadetblue;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    padding: 5px 15px;
+}
+
+
+.form_error {
+    color: red;
+    margin-bottom: 15px;
+}

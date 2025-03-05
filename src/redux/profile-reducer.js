@@ -1,12 +1,14 @@
 import {profileAPI, usersAPI} from "../api/api";
 import {setFetchingStatusAC, setTotalUsersCountAC, setUsersAC} from "./users-reducer";
 import {setAuthUserAvatarAC} from "./auth-reducer";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = '/profile/ADD-POST';
 const SET_PROFILE_INFO = '/profile/SET_PROFILE_INFO';
 const SET_PROFILE_FETCHING_STATUS = '/profile/SET_PROFILE_FETCHING_STATUS';
 const SET_PROFILE_STATUS = '/profile/SET_PROFILE_STATUS';
 const SET_PROFILE_PHOTO = '/profile/SET_PROFILE_PHOTO';
+const SET_PROFILE_EDIT_MODE = '/profile/SET_PROFILE_EDIT_MODE';
 
 const myProfile = {
     fullName: 'AnastasiaMK',
@@ -25,7 +27,8 @@ let initialState = {
     profile: myProfile,
     profileIsFetching: false,
     myProfile: myProfile,
-    status: ''
+    status: '',
+    profileEditMode: false
 };
 
 const profileReducer = (state = initialState, action)=>{
@@ -60,6 +63,11 @@ const profileReducer = (state = initialState, action)=>{
             return {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
+            }
+        case SET_PROFILE_EDIT_MODE:
+            return {
+                ...state,
+                profileEditMode: action.mode
             }
         default:
             return state;
@@ -101,6 +109,13 @@ export const setProfilePhotoAC = (photos) =>{
     }
 };
 
+export const setProfileEditModeAC = (mode) =>{
+    return {
+        type: SET_PROFILE_EDIT_MODE,
+        mode
+    }
+};
+
 
 // Thunk -->
 export const getProfileDataThunkCreator = (profileId) => {
@@ -133,6 +148,22 @@ export const savePhotoThunkCreator = (photo) => {
         if(response.resultCode === 0) {
             dispatch(setProfilePhotoAC(response.data.photos));
             dispatch(setAuthUserAvatarAC(response.data.photos.large));
+        }
+    }
+}
+
+export const saveProfileThunkCreator = (profile) => {
+    return async (dispatch, getState) => {
+        const response = await profileAPI.saveProfile(profile);
+        if(response.resultCode === 0) {
+            dispatch(getProfileDataThunkCreator(getState().auth.userId));
+            dispatch(setProfileEditModeAC(false));
+        } else {
+            // Если ошибка
+            let action = stopSubmit('profileInEditMode', {
+                _error: response.messages.length > 0 ? response.messages[0] : 'Some error',
+            });
+            dispatch(action);
         }
     }
 }

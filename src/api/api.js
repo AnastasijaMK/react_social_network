@@ -66,6 +66,18 @@ export const profileAPI = {
             body: formData
         })
             .then(response=>response.json())
+    },
+    saveProfile(profile) {
+        return fetch(`${baseURL}profile`, {
+            method: 'PUT',
+            headers: {
+                'API-KEY' : '6ecb6a05-6db0-4eb7-8512-1150f3ad73dd',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
+            body: JSON.stringify(profile)
+        })
+            .then(response=>response.json())
     }
 };
 

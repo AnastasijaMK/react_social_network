@@ -4,11 +4,11 @@ import classes from './FormControls.module.css';
 const FormControl = ({input, meta, child, ...props})=>{
     const hasError = meta.touched && meta.error;
     return (
-        <div className={classes.field_block +
+        <span className={classes.field_block +
         (hasError ? ' ' + classes["field_block--error"] : '')}>
             {props.children}
             {hasError && <span>{meta.error}</span>}
-        </div>
+        </span>
     )
 };
 
