@@ -1,15 +1,17 @@
-import {authAPI, profileAPI} from "../api/api";
+import {authAPI, profileAPI, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 const SET_AUTH_USERS_DATA = '/auth/SET_AUTH_USERS_DATA';
 const SET_AUTH_USER_AVATAR = '/auth/SET_AUTH_USER_AVATAR';
+const GET_CAPTCHA_URL = '/auth/GET_CAPTCHA_URL';
 
 const initialState= {
     userId: null,
     email: null,
     login: null,
     avatar: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -23,6 +25,11 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 avatar: action.avatar
+            }
+        case GET_CAPTCHA_URL:
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl
             }
         default:
             return state;
@@ -53,6 +60,15 @@ export const setAuthUserAvatarAC = (avatar)=>{
     )
 };
 
+export const getCaptchaUrlAC = (captchaUrl)=>{
+    return (
+        {
+            type: GET_CAPTCHA_URL,
+            captchaUrl
+        }
+    )
+};
+
 // Thunk -->
 export const authMeThunkCreator = () => {
   return async (dispatch) => {
@@ -68,14 +84,20 @@ export const authMeThunkCreator = () => {
 };
 
 
-export const loginThunkCreator = (login, password, rememberMe) => {
+export const loginThunkCreator = (login, password, rememberMe, captcha) => {
     return async (dispatch) => {
-        let response = await authAPI.login(login, password, rememberMe);
+        let response = await authAPI.login(login, password, rememberMe, captcha);
         if(response.resultCode === 0) {
             // Если успешно
             dispatch(authMeThunkCreator());
         } else {
             // Если ошибка
+
+            if(response.resultCode === 10) {
+                // Если выходит капча
+                dispatch(getCaptchaUrlThunkCreator());
+            }
+
             let action = stopSubmit('login', {
                 _error: response.messages.length > 0 ? response.messages[0] : 'Some error',
             });
@@ -90,6 +112,15 @@ export const logoutThunkCreator = () => {
         if(response.resultCode === 0) {
             dispatch(setAuthUserDataAC(null, null, null, false));
         }
+    }
+};
+
+
+export const getCaptchaUrlThunkCreator = () => {
+    return async (dispatch) => {
+        let response = await securityAPI.getCaptchaUrl();
+        const captchaUrl = response.url;
+        dispatch(getCaptchaUrlAC(captchaUrl));
     }
 };
 

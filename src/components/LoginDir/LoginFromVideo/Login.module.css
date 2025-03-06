@@ -39,6 +39,11 @@
     position: relative;
 }
 
+.agreement .form_label span:first-child {
+    width: 0;
+    flex-grow: 0;
+}
+
 .agreement input {
     position: absolute;
     top: 0;

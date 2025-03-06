@@ -87,13 +87,14 @@ export const authAPI = {
             credentials: "include"
         }).then(response => response.json())
     },
-    login(login, password, rememberMe = false) {
+    login(login, password, rememberMe = false, captcha) {
         return fetch(`${baseURL}auth/login`, {
             method: 'POST',
             body: JSON.stringify({
                 email: login,
                 password,
-                rememberMe
+                rememberMe,
+                captcha
             }),
             credentials: "include",
             headers: {
@@ -105,5 +106,16 @@ export const authAPI = {
         return fetch(`${baseURL}auth/login/`, {
             method: 'DELETE'
         }).then(response => response.json())
+    }
+};
+
+
+export const securityAPI = {
+    getCaptchaUrl () {
+        return fetch(`${baseURL}security/get-captcha-url`, {
+            headers: {'API-KEY' : '6ecb6a05-6db0-4eb7-8512-1150f3ad73dd'},
+            credentials: "include"
+        })
+            .then(response=>response.json())
     }
 };

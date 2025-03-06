@@ -8,12 +8,13 @@ import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {loginThunkCreator} from "../../../redux/auth-reducer";
 
 const Login = (props) => {
+    const captchaUrl = useSelector(state => state.auth.captchaUrl);
     // const isAuth = useSelector(state => state.auth.isAuth);
     // if(isAuth) return <Navigate to="/profile"/>
 
     // Функция для обработки отправки формы
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     };
 
     if(props.isAuth) {
@@ -26,7 +27,7 @@ const Login = (props) => {
                 <h1>Login</h1>
             </div>
             <div className={classes.login_wrap}>
-                <LoginFormRedux onSubmit={onSubmit}/>
+                <LoginFormRedux onSubmit={onSubmit} captchaUrl={captchaUrl}/>
             </div>
 
         </div>
@@ -68,6 +69,19 @@ const LoginForm = (props)=>{
                         {props.error}
                     </div>
                 }
+                {props.captchaUrl &&
+                    <>
+                        <img src={props.captchaUrl} alt=""/>
+                        <div className={classes.form_field}>
+                            <Field type={"text"}
+                                   placeholder={"Enter symbols..."}
+                                   component={Input}
+                                   name={"captcha"}
+                                   required
+                                   validate={[required]}/>
+                        </div>
+                    </>
+                }
                 <div className={classes.form_action}>
                     <button className={classes.form_button}>Log in</button>
                 </div>
@@ -89,8 +103,8 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-        login: (login, password, rememberMe)=>{
-            dispatch(loginThunkCreator(login, password, rememberMe));
+        login: (login, password, rememberMe, captcha)=>{
+            dispatch(loginThunkCreator(login, password, rememberMe, captcha));
         },
     }
 };
