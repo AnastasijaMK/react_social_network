@@ -1,5 +1,5 @@
 import React from "react";
-import {Navigate} from "react-router-dom";
+
 import {connect} from "react-redux";
 
 import ProfileInContainer from "./ProfileInContainer";
@@ -37,8 +37,7 @@ class ProfileContainerClass extends React.Component {
         this.props.getProfileStatusThunk(userId);
     }
 
-
-        render() {
+    render() {
         return(
             <ProfileInContainer {...this.props} />
         )

@@ -1,5 +1,6 @@
-import  {Routes, Route} from 'react-router-dom';
+import  {Routes, Route, Navigate} from 'react-router-dom';
 import "./App.css";
+
 
 import { Header } from './components/HeaderDir/Header/Header';
 import HeaderContainerClass from './components/HeaderDir/HeaderFromVideo/HeaderContainerClass';
@@ -45,6 +46,8 @@ class App extends React.Component {
                     <Sidebar />
                     <div className='app-wrapper-content'>
                         <Routes>
+                            <Route path="/" element={<Navigate to="/profile" />} />
+
                             {/*<Route path='/dialogs/*'*/}
                             {/*       element={*/}
                             {/*           <React.Suspense fallback={<Loader parent='profile_loading'/>}>*/}
